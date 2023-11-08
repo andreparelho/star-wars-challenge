@@ -2,6 +2,7 @@ package com.andreparelho.app.starwarschallenge.service;
 
 import com.andreparelho.app.starwarschallenge.model.PlanetModel;
 import com.andreparelho.app.starwarschallenge.model.request.PlanetModelRequest;
+import com.andreparelho.app.starwarschallenge.model.response.PlanetModelResponse;
 import com.andreparelho.app.starwarschallenge.validator.PlanetValidator;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +14,15 @@ public class PlanetService {
         this.planetValidator = planetValidator;
     }
 
-    public PlanetModel createPlanet(PlanetModelRequest planetModelRequest){
-        PlanetModel newPlanet = new PlanetModel();
+    public PlanetModelResponse createPlanet(PlanetModelRequest planetModelRequest){
+        PlanetModelResponse planetResponse = new PlanetModelResponse();
         PlanetModelRequest validPlanet = this.planetValidator.validatePlanet(planetModelRequest);
 
         if (validPlanet != null){
-            newPlanet.setName(validPlanet.getName());
-            newPlanet.setClimate(validPlanet.getClimate());
-            newPlanet.setGround(validPlanet.getGround());
-            return newPlanet;
+            planetResponse.setName(validPlanet.getName());
+            planetResponse.setClimate(validPlanet.getClimate());
+            planetResponse.setGround(validPlanet.getGround());
+            return planetResponse;
         }
 
         return null;
