@@ -1,5 +1,8 @@
 package com.andreparelho.app.starwarschallenge.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PlanetModel {
     private String name;
     private String climate;

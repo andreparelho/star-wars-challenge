@@ -24,7 +24,7 @@ public class StarWarsController {
         if (planet != null){
             return ResponseEntity.ok(planet);
         }
-        return ResponseEntity.status(400).build();
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/list-planets")
