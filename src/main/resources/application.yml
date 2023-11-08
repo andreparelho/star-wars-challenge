@@ -14,3 +14,6 @@ feign:
         encoder: com.example.SimpleEncoder
         decoder: com.example.SimpleDecoder
         contract: com.example.SimpleContract
+integration:
+  star-wars-api:
+    url: https://swapi.dev/api/

@@ -1,7 +1,7 @@
 package com.andreparelho.app.starwarschallenge.controller;
 
 import com.andreparelho.app.starwarschallenge.model.PlanetModel;
-import com.andreparelho.app.starwarschallenge.service.StarWarsService;
+import com.andreparelho.app.starwarschallenge.service.PlanetService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,15 +11,19 @@ import java.util.List;
 @RequestMapping("/api")
 public class StarWarsController {
 
-    private final StarWarsService starWarsService;
+    private final PlanetService planetService;
 
-    public StarWarsController(StarWarsService starWarsService) {
-        this.starWarsService = starWarsService;
+    public StarWarsController(PlanetService planetService) {
+        this.planetService = planetService;
     }
 
     @PostMapping("/create-planet")
     public ResponseEntity<PlanetModel> createPlanet(@RequestBody String name, @RequestBody String climate, @RequestBody String ground){
-        return ResponseEntity.ok().build();
+        PlanetModel planet = this.planetService.createPlanet(name, climate, ground);
+        if (planet != null){
+            return ResponseEntity.ok(planet);
+        }
+        return ResponseEntity.status(400).build();
     }
 
     @GetMapping("/list-planets")
