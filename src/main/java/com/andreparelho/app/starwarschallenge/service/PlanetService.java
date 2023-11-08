@@ -15,15 +15,17 @@ public class PlanetService {
 
     public PlanetModel createPlanet(PlanetModelRequest planetModelRequest){
         PlanetModel newPlanet = new PlanetModel();
-        boolean isValidPlanet = this.planetValidator.validatePlanet(planetModelRequest);
+        PlanetModelRequest validPlanet = this.planetValidator.validatePlanet(planetModelRequest);
 
-        if (isValidPlanet){
-            newPlanet.setName(planetModelRequest.getName());
-            newPlanet.setClimate(planetModelRequest.getClimate());
-            newPlanet.setGround(planetModelRequest.getGround());
+        if (validPlanet != null){
+            newPlanet.setName(validPlanet.getName());
+            newPlanet.setClimate(validPlanet.getClimate());
+            newPlanet.setGround(validPlanet.getGround());
             return newPlanet;
         }
 
         return null;
     }
+
+
 }
