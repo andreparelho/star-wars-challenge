@@ -1,6 +1,7 @@
 package com.andreparelho.app.starwarschallenge.controller;
 
 import com.andreparelho.app.starwarschallenge.model.PlanetModel;
+import com.andreparelho.app.starwarschallenge.model.request.PlanetModelRequest;
 import com.andreparelho.app.starwarschallenge.service.PlanetService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,8 @@ public class StarWarsController {
     }
 
     @PostMapping("/create-planet")
-    public ResponseEntity<PlanetModel> createPlanet(@RequestBody String name, @RequestBody String climate, @RequestBody String ground){
-        PlanetModel planet = this.planetService.createPlanet(name, climate, ground);
+    public ResponseEntity<PlanetModel> createPlanet(@RequestBody PlanetModelRequest planetModelRequest){
+        PlanetModel planet = this.planetService.createPlanet(planetModelRequest);
         if (planet != null){
             return ResponseEntity.ok(planet);
         }

@@ -1,6 +1,7 @@
 package com.andreparelho.app.starwarschallenge.service;
 
 import com.andreparelho.app.starwarschallenge.model.PlanetModel;
+import com.andreparelho.app.starwarschallenge.model.request.PlanetModelRequest;
 import com.andreparelho.app.starwarschallenge.validator.PlanetValidator;
 
 public class PlanetService {
@@ -10,14 +11,14 @@ public class PlanetService {
         this.planetValidator = planetValidator;
     }
 
-    public PlanetModel createPlanet(String name, String climate, String ground){
+    public PlanetModel createPlanet(PlanetModelRequest planetModelRequest){
         PlanetModel newPlanet = new PlanetModel();
         boolean isValidPlanet = this.planetValidator.validatePlanet(newPlanet);
 
         if (isValidPlanet){
-            newPlanet.setName(name);
-            newPlanet.setClimate(climate);
-            newPlanet.setGround(ground);
+            newPlanet.setName(planetModelRequest.getName());
+            newPlanet.setClimate(planetModelRequest.getClimate());
+            newPlanet.setGround(planetModelRequest.getGround());
             return newPlanet;
         }
 
