@@ -7,7 +7,6 @@ public class PlanetModelRequest {
     private String name;
     private String climate;
     private String ground;
-
     private int movies;
 
     public String getName() {

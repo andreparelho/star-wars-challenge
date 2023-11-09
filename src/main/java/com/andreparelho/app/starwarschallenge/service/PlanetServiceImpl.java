@@ -36,6 +36,7 @@ public class PlanetServiceImpl implements PlanetService {
             planetModel.setClimate(validPlanet.getClimate());
             planetModel.setGround(validPlanet.getGround());
 
+
             PlanetEntity planetEntity = this.planetConverter.modelToEntity(planetModel);
             this.planetRepository.addPlanet(planetEntity);
 

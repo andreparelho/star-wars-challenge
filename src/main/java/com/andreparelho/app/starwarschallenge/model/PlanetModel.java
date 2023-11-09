@@ -7,6 +7,7 @@ public class PlanetModel {
     private String name;
     private String climate;
     private String ground;
+    private int movies;
 
     public String getName() {
         return name;
@@ -30,5 +31,13 @@ public class PlanetModel {
 
     public void setGround(String ground) {
         this.ground = ground;
+    }
+
+    public int getMovies() {
+        return movies;
+    }
+
+    public void setMovies(int movies) {
+        this.movies = movies;
     }
 }
