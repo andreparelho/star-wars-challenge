@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "planets")
+@SequenceGenerator(name = "PLANETS_SEQ_GENERATOR", sequenceName = "PLANETS_SEQ")
 public class PlanetEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

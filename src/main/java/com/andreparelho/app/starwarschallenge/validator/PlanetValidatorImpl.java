@@ -2,6 +2,7 @@ package com.andreparelho.app.starwarschallenge.validator;
 
 import com.andreparelho.app.starwarschallenge.http.api.StarWarsApi;
 import com.andreparelho.app.starwarschallenge.model.request.PlanetModelRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.Map;
 public class PlanetValidatorImpl implements PlanetValidator{
     private final StarWarsApi starWarsApi;
     private PlanetModelRequest validPlanet;
-
+    @Autowired
     public PlanetValidatorImpl(StarWarsApi starWarsApi, PlanetModelRequest validPlanet) {
         this.starWarsApi = starWarsApi;
         this.validPlanet = validPlanet;

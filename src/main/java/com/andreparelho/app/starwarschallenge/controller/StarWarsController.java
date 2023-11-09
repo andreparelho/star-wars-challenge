@@ -4,6 +4,7 @@ import com.andreparelho.app.starwarschallenge.model.PlanetModel;
 import com.andreparelho.app.starwarschallenge.model.request.PlanetModelRequest;
 import com.andreparelho.app.starwarschallenge.model.response.PlanetModelResponse;
 import com.andreparelho.app.starwarschallenge.service.PlanetService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ public class StarWarsController {
 
     private final PlanetService planetService;
 
+    @Autowired
     public StarWarsController(PlanetService planetService) {
         this.planetService = planetService;
     }

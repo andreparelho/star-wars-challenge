@@ -1,3 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+
 feign:
   client:
     config:
@@ -14,6 +24,7 @@ feign:
         encoder: com.example.SimpleEncoder
         decoder: com.example.SimpleDecoder
         contract: com.example.SimpleContract
+
 integration:
   star-wars-api:
     url: https://swapi.dev/api/

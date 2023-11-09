@@ -2,15 +2,17 @@ package com.andreparelho.app.starwarschallenge.repository.converter;
 
 import com.andreparelho.app.starwarschallenge.entity.PlanetEntity;
 import com.andreparelho.app.starwarschallenge.model.PlanetModel;
+import com.andreparelho.app.starwarschallenge.model.request.PlanetModelRequest;
 import com.andreparelho.app.starwarschallenge.model.response.PlanetModelResponse;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PlanetConverter {
-
-    public PlanetModel requestToModel(PlanetModelResponse planetModelResponse){
+    public PlanetModel requestToModel(PlanetModelRequest planetModelRequest){
         PlanetModel model = new PlanetModel();
-        model.setName(planetModelResponse.getName());
-        model.setGround(planetModelResponse.getGround());
-        model.setClimate(planetModelResponse.getClimate());
+        model.setName(planetModelRequest.getName());
+        model.setGround(planetModelRequest.getGround());
+        model.setClimate(planetModelRequest.getClimate());
         return model;
     }
 
@@ -20,5 +22,13 @@ public class PlanetConverter {
         entity.setGround(planetModel.getGround());
         entity.setClimate(planetModel.getClimate());
         return entity;
+    }
+
+    public PlanetModelResponse requestToResponse(PlanetModelRequest planetModelRequest){
+        PlanetModelResponse response = new PlanetModelResponse();
+        response.setName(planetModelRequest.getName());
+        response.setGround(planetModelRequest.getGround());
+        response.setClimate(planetModelRequest.getClimate());
+        return response;
     }
 }
