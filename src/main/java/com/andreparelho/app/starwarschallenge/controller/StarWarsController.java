@@ -3,7 +3,7 @@ package com.andreparelho.app.starwarschallenge.controller;
 import com.andreparelho.app.starwarschallenge.model.PlanetModel;
 import com.andreparelho.app.starwarschallenge.model.request.PlanetModelRequest;
 import com.andreparelho.app.starwarschallenge.model.response.PlanetModelResponse;
-import com.andreparelho.app.starwarschallenge.service.PlanetService;
+import com.andreparelho.app.starwarschallenge.service.PlanetServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,16 +14,16 @@ import java.util.List;
 @RequestMapping("/api")
 public class StarWarsController {
 
-    private final PlanetService planetService;
+    private final PlanetServiceImpl planetServiceImpl;
 
     @Autowired
-    public StarWarsController(PlanetService planetService) {
-        this.planetService = planetService;
+    public StarWarsController(PlanetServiceImpl planetServiceImpl) {
+        this.planetServiceImpl = planetServiceImpl;
     }
 
     @PostMapping("/create-planet")
     public ResponseEntity<PlanetModelResponse> createPlanet(@RequestBody PlanetModelRequest planetModelRequest){
-        PlanetModelResponse planet = this.planetService.createPlanet(planetModelRequest);
+        PlanetModelResponse planet = this.planetServiceImpl.createPlanet(planetModelRequest);
         if (planet != null){
             return ResponseEntity.ok(planet);
         }

@@ -28,6 +28,7 @@ public class PlanetValidatorImpl implements PlanetValidator{
                 this.validPlanet.setName(planet.get("name"));
                 this.validPlanet.setClimate(planet.get("climate"));
                 this.validPlanet.setGround(planet.get("terrain"));
+                this.validPlanet.setMovies(planet.get("films").length());
                 return this.validPlanet;
             }
         }
