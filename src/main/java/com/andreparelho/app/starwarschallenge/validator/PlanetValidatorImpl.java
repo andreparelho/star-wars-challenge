@@ -19,7 +19,7 @@ public class PlanetValidatorImpl implements PlanetValidator{
 
     @Override
     public PlanetModelRequest validatePlanet(PlanetModelRequest planetModelRequest) {
-        Map<String, Object> response = starWarsApi.getPlanets();
+        Map<String, Object> response = this.starWarsApi.getPlanets();
         List<Map<String, String>> planets = (List<Map<String, String>>) response.get("results");
 
         for (Map<String, String> planet : planets) {
@@ -27,10 +27,10 @@ public class PlanetValidatorImpl implements PlanetValidator{
                 this.validPlanet.setName(planet.get("name"));
                 this.validPlanet.setClimate(planet.get("climate"));
                 this.validPlanet.setGround(planet.get("terrain"));
-                break;
+                return this.validPlanet;
             }
         }
 
-        return this.validPlanet;
+        return null;
     }
 }
