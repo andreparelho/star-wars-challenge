@@ -12,5 +12,5 @@ public interface PlanetRepository {
     List<PlanetEntity> listPlanets();
     Optional<PlanetEntity> getPlanetByName(String name);
     Optional<PlanetEntity> getPlanetById(Long id);
-    String deletePlanetById(Long id);
+    Optional<String> deletePlanetById(Long id);
 }

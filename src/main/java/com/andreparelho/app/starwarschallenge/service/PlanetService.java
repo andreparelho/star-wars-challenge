@@ -12,5 +12,5 @@ public interface PlanetService {
     List<PlanetModelResponse> listPlanets();
     Optional<PlanetModelResponse> getPlanetByName(String name);
     Optional<PlanetModelResponse> getPlanetById(Long id);
-    String deletePlanetById(Long id);
+    Optional<String> deletePlanetById(Long id);
 }

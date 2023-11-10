@@ -65,7 +65,7 @@ public class PlanetServiceImpl implements PlanetService {
     }
 
     @Override
-    public String deletePlanetById(Long id) {
+    public Optional<String> deletePlanetById(Long id) {
         return this.planetRepository.deletePlanetById(id);
     }
 }

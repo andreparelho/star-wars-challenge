@@ -27,13 +27,15 @@ public class PlanetValidatorImpl implements PlanetValidator{
 
         for (Map<String, String> planet : planets) {
             String responseApiPlanetName = planet.get("name");
+            String responseApiPlanetClimate = planet.get("climate");
+            String responseApiPlanetTerrain = planet.get("terrain");
             if (responseApiPlanetName.equalsIgnoreCase(planetModelRequest.getName())) {
                 this.validPlanet.setName(responseApiPlanetName);
-                this.validPlanet.setClimate(planet.get("climate"));
-                this.validPlanet.setGround(planet.get("terrain"));
+                this.validPlanet.setClimate(responseApiPlanetClimate);
+                this.validPlanet.setGround(responseApiPlanetTerrain);
 
-                String numberFilmUrl = getNumberFilmUrl(planet.get("url"));
-                int filmNumber = getFilmNumber(numberFilmUrl);
+                String responseApiPlanetUrl = getFilmId(planet.get("url"));
+                int filmNumber = getNumbersFilmByName(responseApiPlanetUrl);
                 this.validPlanet.setMovies(filmNumber);
 
                 return this.validPlanet;
@@ -43,7 +45,7 @@ public class PlanetValidatorImpl implements PlanetValidator{
         return null;
     }
 
-    private String getNumberFilmUrl (String url){
+    private String getFilmId (String url){
         Pattern pattern = Pattern.compile("/(\\d+)/");
         Matcher matcher = pattern.matcher(url);
 
@@ -54,9 +56,9 @@ public class PlanetValidatorImpl implements PlanetValidator{
         return null;
     }
 
-    private int getFilmNumber(String film){
+    private int getNumbersFilmByName(String film){
         Map<String, Object> response = this.starWarsApi.getPlanet(film);
-        List<String> movies = (List<String>) response.get("films");
-        return movies.size();
+        List<String> responseApiPlanetFilms =  (List<String>) response.get("films");
+        return responseApiPlanetFilms.size();
     }
 }

@@ -50,7 +50,8 @@ public class StarWarsController {
     }
 
     @DeleteMapping("/delete-planet-by-id")
-    public ResponseEntity<PlanetModelResponse> deletePlanetById(@RequestParam("id") Long id){
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Optional<String>> deletePlanetById(@RequestParam("id") Long id){
+        Optional<String> planetDeleted = this.planetService.deletePlanetById(id);
+        return ResponseEntity.ok(planetDeleted);
     }
 }

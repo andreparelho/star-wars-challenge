@@ -38,8 +38,9 @@ public class PlanetRepositoryImpl implements PlanetRepository{
     }
 
     @Override
-    public String deletePlanetById(Long id) {
+    public Optional<String> deletePlanetById(Long id) {
         this.crudPlanetRepository.deleteById(id);
-        return "deletado com sucesso";
+        Optional<String> response = Optional.of("planeta deletado com sucesso.");
+        return response;
     }
 }
