@@ -35,7 +35,7 @@ public class PlanetValidatorImpl implements PlanetValidator{
                 this.validPlanet.setGround(responseApiPlanetTerrain);
 
                 String responseApiPlanetUrl = getFilmId(planet.get("url"));
-                int filmNumber = getNumbersFilmByName(responseApiPlanetUrl);
+                int filmNumber = getNumbersFilmById(responseApiPlanetUrl);
                 this.validPlanet.setMovies(filmNumber);
 
                 return this.validPlanet;
@@ -56,7 +56,7 @@ public class PlanetValidatorImpl implements PlanetValidator{
         return null;
     }
 
-    private int getNumbersFilmByName(String film){
+    private int getNumbersFilmById(String film){
         Map<String, Object> response = this.starWarsApi.getPlanet(film);
         List<String> responseApiPlanetFilms =  (List<String>) response.get("films");
         return responseApiPlanetFilms.size();
