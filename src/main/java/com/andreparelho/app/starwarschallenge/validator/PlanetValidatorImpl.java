@@ -13,11 +13,11 @@ import java.util.regex.Pattern;
 @Service
 public class PlanetValidatorImpl implements PlanetValidator{
     private final StarWarsApi starWarsApi;
-    private PlanetModelRequest validPlanet;
+    private PlanetModelRequest planetModelRequest;
     @Autowired
     public PlanetValidatorImpl(StarWarsApi starWarsApi, PlanetModelRequest validPlanet) {
         this.starWarsApi = starWarsApi;
-        this.validPlanet = validPlanet;
+        this.planetModelRequest = validPlanet;
     }
 
     @Override
@@ -30,15 +30,15 @@ public class PlanetValidatorImpl implements PlanetValidator{
             String responseApiPlanetClimate = planet.get("climate");
             String responseApiPlanetTerrain = planet.get("terrain");
             if (responseApiPlanetName.equalsIgnoreCase(planetModelRequest.getName())) {
-                this.validPlanet.setName(responseApiPlanetName);
-                this.validPlanet.setClimate(responseApiPlanetClimate);
-                this.validPlanet.setGround(responseApiPlanetTerrain);
+                this.planetModelRequest.setName(responseApiPlanetName);
+                this.planetModelRequest.setClimate(responseApiPlanetClimate);
+                this.planetModelRequest.setGround(responseApiPlanetTerrain);
 
                 String responseApiPlanetUrl = getFilmId(planet.get("url"));
-                int filmNumber = getNumbersFilmById(responseApiPlanetUrl);
-                this.validPlanet.setMovies(filmNumber);
+                int filmNumbers = getNumbersFilmById(responseApiPlanetUrl);
+                this.planetModelRequest.setMovies(filmNumbers);
 
-                return this.validPlanet;
+                return this.planetModelRequest;
             }
         }
 
@@ -50,7 +50,8 @@ public class PlanetValidatorImpl implements PlanetValidator{
         Matcher matcher = pattern.matcher(url);
 
         if (matcher.find()){
-            return matcher.group(1);
+            String idFilm = matcher.group(1);
+            return idFilm;
         }
 
         return null;
