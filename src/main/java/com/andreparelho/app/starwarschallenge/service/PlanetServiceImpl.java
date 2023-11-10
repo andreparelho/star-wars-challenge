@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -18,60 +19,53 @@ public class PlanetServiceImpl implements PlanetService {
     private final PlanetValidator planetValidator;
     private final PlanetRepository planetRepository;
     private final PlanetConverter planetConverter;
+    private PlanetModel planetModel;
+    private PlanetModelResponse planetModelResponse;
     @Autowired
-    public PlanetServiceImpl(PlanetValidator planetValidator, PlanetRepository planetRepository, PlanetConverter planetConverter) {
+    public PlanetServiceImpl(PlanetValidator planetValidator, PlanetRepository planetRepository, PlanetConverter planetConverter, PlanetModel planetModel, PlanetModelResponse planetModelResponse) {
         this.planetValidator = planetValidator;
         this.planetRepository = planetRepository;
         this.planetConverter = planetConverter;
+        this.planetModel = planetModel;
+        this.planetModelResponse = planetModelResponse;
     }
 
     @Override
     public PlanetModelResponse createPlanet(PlanetModelRequest planetModelRequest){
-        PlanetModelResponse planetResponse = new PlanetModelResponse();
         PlanetModelRequest validPlanet = this.planetValidator.validatePlanet(planetModelRequest);
 
         if (validPlanet != null){
-            PlanetModel planetModel = this.planetConverter.requestToModel(planetModelRequest);
-            planetModel.setName(validPlanet.getName());
-            planetModel.setClimate(validPlanet.getClimate());
-            planetModel.setGround(validPlanet.getGround());
-
-
-            PlanetEntity planetEntity = this.planetConverter.modelToEntity(planetModel);
+            PlanetEntity planetEntity = this.planetConverter.modelToEntity(this.planetModel.createModel(validPlanet));
             this.planetRepository.addPlanet(planetEntity);
 
-            planetResponse.setName(validPlanet.getName());
-            planetResponse.setClimate(validPlanet.getClimate());
-            planetResponse.setGround(validPlanet.getGround());
-            planetResponse.setMovies(validPlanet.getMovies());
-            return planetResponse;
+            return this.planetModelResponse.createResponse(validPlanet);
         }
 
         return null;
     }
 
     @Override
-    public List<PlanetEntity> listPlanets(PlanetModelRequest planetModelRequest) {
-        return null;
+    public List<PlanetModelResponse> listPlanets() {
+        List<PlanetEntity> planetEntityList = this.planetRepository.listPlanets();
+
+        List<PlanetModelResponse> response = this.planetConverter.entityListToResponseList(planetEntityList);
+        return response;
     }
 
     @Override
-    public PlanetEntity getPlanetByName(String name) {
-        return null;
+    public  Optional<PlanetModelResponse> getPlanetByName(String name) {
+        Optional<PlanetEntity> planetEntityOptional = this.planetRepository.getPlanetByName(name);
+        return Optional.ofNullable(this.planetConverter.optionalToResponse(planetEntityOptional));
     }
 
     @Override
-    public PlanetEntity getPlanetById(Long id) {
-        return null;
-    }
-
-    @Override
-    public String deletePlanetByName(String name) {
-        return null;
+    public Optional<PlanetModelResponse> getPlanetById(Long id) {
+        Optional<PlanetEntity> planetEntityOptional = this.planetRepository.getPlanetById(id);
+        return Optional.ofNullable(this.planetConverter.optionalToResponse(planetEntityOptional));
     }
 
     @Override
     public String deletePlanetById(Long id) {
-        return null;
+        return this.planetRepository.deletePlanetById(id);
     }
 }

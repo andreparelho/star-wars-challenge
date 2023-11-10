@@ -1,16 +1,16 @@
 package com.andreparelho.app.starwarschallenge.repository;
 
 import com.andreparelho.app.starwarschallenge.entity.PlanetEntity;
-import com.andreparelho.app.starwarschallenge.model.PlanetModel;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface PlanetRepository {
     PlanetEntity addPlanet(PlanetEntity planetEntity);
     List<PlanetEntity> listPlanets();
-    PlanetEntity getPlanetByName(String name);
-    PlanetEntity getPlanetById(Long id);
-    String deletePlanetByName(String name);
+    Optional<PlanetEntity> getPlanetByName(String name);
+    Optional<PlanetEntity> getPlanetById(Long id);
     String deletePlanetById(Long id);
 }

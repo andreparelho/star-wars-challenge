@@ -8,6 +8,7 @@ public class PlanetModelRequest {
     private String climate;
     private String ground;
     private int movies;
+    private String url;
 
     public String getName() {
         return name;
@@ -39,5 +40,13 @@ public class PlanetModelRequest {
 
     public void setMovies(int movies) {
         this.movies = movies;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

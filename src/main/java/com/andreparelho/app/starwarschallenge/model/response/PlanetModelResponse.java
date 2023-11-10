@@ -1,5 +1,8 @@
 package com.andreparelho.app.starwarschallenge.model.response;
 
+import com.andreparelho.app.starwarschallenge.model.PlanetModel;
+import com.andreparelho.app.starwarschallenge.model.request.PlanetModelRequest;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -7,7 +10,8 @@ public class PlanetModelResponse {
     private String name;
     private String climate;
     private String ground;
-    private int movies;
+    @JsonProperty("movie_appearances")
+    private int moviesAppearances;
 
     public String getName() {
         return name;
@@ -33,11 +37,20 @@ public class PlanetModelResponse {
         this.ground = ground;
     }
 
-    public int getMovies() {
-        return movies;
+    public int getMoviesAppearances() {
+        return moviesAppearances;
     }
 
-    public void setMovies(int movies) {
-        this.movies = movies;
+    public void setMoviesAppearances(int moviesAppearances) {
+        this.moviesAppearances = moviesAppearances;
+    }
+
+    public PlanetModelResponse createResponse(PlanetModelRequest planetModelRequest){
+        PlanetModelResponse planetResponse = new PlanetModelResponse();
+        planetResponse.setName(planetModelRequest.getName());
+        planetResponse.setClimate(planetModelRequest.getClimate());
+        planetResponse.setGround(planetModelRequest.getGround());
+        planetResponse.setMoviesAppearances(planetModelRequest.getMovies());
+        return planetResponse;
     }
 }

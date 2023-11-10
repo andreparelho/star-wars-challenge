@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlanetRepositoryImpl implements PlanetRepository{
@@ -23,26 +24,22 @@ public class PlanetRepositoryImpl implements PlanetRepository{
 
     @Override
     public List<PlanetEntity> listPlanets() {
-        return null;
+        return (List<PlanetEntity>) this.crudPlanetRepository.findAll();
     }
 
     @Override
-    public PlanetEntity getPlanetByName(String name) {
-        return null;
+    public Optional<PlanetEntity> getPlanetByName(String name) {
+        return this.crudPlanetRepository.getByName(name);
     }
 
     @Override
-    public PlanetEntity getPlanetById(Long id) {
-        return null;
-    }
-
-    @Override
-    public String deletePlanetByName(String name) {
-        return null;
+    public Optional<PlanetEntity> getPlanetById(Long id) {
+        return this.crudPlanetRepository.findById(id);
     }
 
     @Override
     public String deletePlanetById(Long id) {
-        return null;
+        this.crudPlanetRepository.deleteById(id);
+        return "deletado com sucesso";
     }
 }

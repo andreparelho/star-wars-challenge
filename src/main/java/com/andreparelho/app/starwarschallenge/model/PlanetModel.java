@@ -1,5 +1,6 @@
 package com.andreparelho.app.starwarschallenge.model;
 
+import com.andreparelho.app.starwarschallenge.model.request.PlanetModelRequest;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -39,5 +40,14 @@ public class PlanetModel {
 
     public void setMovies(int movies) {
         this.movies = movies;
+    }
+
+    public PlanetModel createModel(PlanetModelRequest planetModelRequest){
+        PlanetModel planetModel = new PlanetModel();
+        planetModel.setName(planetModelRequest.getName());
+        planetModel.setClimate(planetModelRequest.getClimate());
+        planetModel.setGround(planetModelRequest.getGround());
+        planetModel.setMovies(planetModelRequest.getMovies());
+        return planetModel;
     }
 }
