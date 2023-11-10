@@ -11,7 +11,7 @@ Olá! Este é o meu projeto para o desafio back-end proposto pela AmeDigital. O 
     - Terreno
 - Para cada planeta, também devemos ter a quantidade de aparições em filmes, obtidas através da API pública do Star Wars: SWAPI.
 
-## Funcionalidades Desejadas
+## Funcionalidades
 - Adicionar um planeta (com nome, clima e terreno).
 - Listar planetas.
 - Buscar por nome. 
