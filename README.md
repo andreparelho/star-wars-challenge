@@ -25,11 +25,6 @@ Olá! Este é o meu projeto para o desafio back-end proposto pela AmeDigital. O 
 
 
 
-
-## Referência
-
- - [Desafio](https://github.com/AmeDigital/challenge-back-end-hit)
-
 ## Como rodar o projeto
 
 Clone o projeto
@@ -58,3 +53,6 @@ A aplicação estará disponível em http://localhost:8080
 - `DELETE /delete-planet-by-id:` deleta um planeta pelo id;
 
 
+## Referências
+
+ - [Desafio](https://github.com/AmeDigital/challenge-back-end-hit)
