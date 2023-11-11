@@ -1,7 +1,7 @@
 
 # StarWars Challenge
 
-Olá! Este é o meu projeto para o desafio back-end proposto pela AmeDigital. O objetivo é desenvolver uma API para fornecer informações sobre planetas do universo Star Wars. Os associados são fãs da franquia, então queremos criar um jogo com base nessas informações.
+Olá! Este é o meu projeto para o desafio back-end proposto pela AmeDigital. O objetivo é desenvolver uma API para fornecer informações sobre planetas do universo Star Wars.
 
 ## Requisitos
 - A API deve ser RESTful.
