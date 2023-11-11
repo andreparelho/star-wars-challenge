@@ -40,19 +40,18 @@ public class PlanetConverter {
     }
 
     public List<PlanetModelResponse> entityListToResponseList(List<PlanetEntity> planetEntity){
-        PlanetModelResponse response = new PlanetModelResponse();
-        List<PlanetModelResponse> responseList = new ArrayList<>();
+        List<PlanetModelResponse> planetsList = new ArrayList<>();
 
         for (PlanetEntity planet : planetEntity) {
-            response.setName(planet.getName());
-            response.setGround(planet.getGround());
-            response.setClimate(planet.getClimate());
-            response.setMoviesAppearances(planet.getMovies());
-
-            responseList.add(response);
+            PlanetModelResponse planetModelResponse = new PlanetModelResponse();
+            planetModelResponse.setName(planet.getName());
+            planetModelResponse.setGround(planet.getGround());
+            planetModelResponse.setClimate(planet.getClimate());
+            planetModelResponse.setMoviesAppearances(planet.getMovies());
+            planetsList.add(planetModelResponse);
         }
 
-        return responseList;
+        return planetsList;
     }
 
     public PlanetModelResponse requestToResponse(PlanetModelRequest planetModelRequest){
